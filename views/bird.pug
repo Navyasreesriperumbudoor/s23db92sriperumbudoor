@@ -8,6 +8,7 @@ block content
     div(class="row")
       each bird,index in results
         div(class="col-sm-2" onclick =`buy(${index})`) #{bird.name}, #{bird.color}, #{bird.speed}
+        
     script.
         function buy(a)
         {
