@@ -88,3 +88,45 @@ ${JSON.stringify(req.body)}`)
 failed`);
  }
 };
+
+// Handle bird delete on DELETE.
+exports.bird_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await bird.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
+
+   // Handle a show one view with id specified by query
+exports.bird_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await bird.findById( req.query.id)
+    res.render('birddetail',
+   { title: 'bird Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+
+
+   // Handle building the view for creating a bird.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.bird_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('birdcreate', { title: 'bird Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
