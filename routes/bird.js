@@ -1,10 +1,10 @@
 var express = require('express');
+const bird_controlers= require('../controllers/bird');
 var router = express.Router();
+/* GET birds */
+router.get('/', bird_controlers.bird_view_all_Page );
+router.get('/detail', bird_controlers.bird_view_one_Page);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('bird', { title: 'Search Results bird' });
-});
-
+/* GET create bird page */
+router.get('/create', bird_controlers.bird_create_Page);
 module.exports = router;
-
