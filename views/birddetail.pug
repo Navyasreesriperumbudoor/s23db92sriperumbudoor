@@ -1,24 +1,27 @@
 extends layout
 block content
- h1= title
- 
- if (toShow == null)
+  h1= title
+  if (toShow == null)
     h2 No instance to detail
   else
- - let birdid = toShow._id
- - let bird_name  = toShow.bird_name
- - let color = toShow.color
- - let speed = toShow.speed
- div
- div.row
- div(class='birdAttr mr-3') bird ID is:
- div #{birdid}
- div.row
- div(class='birdAttr mr-3') bird name is:
- div #{bird_name}
- div.row
- div(class='birdAttr1 mr-3') bird color is:
- div #{color}
- div.row
- div(class='birdAttr2 mr-3') bird speed is:
- div #{speed}
+    - let birdid = toShow._id
+    - let bird_name  = toShow.bird_name
+    - let color = toShow.color
+    - let speed = toShow.speed
+
+  div
+    div.row
+      div(class='birdAttr mr-3') bird ID is:
+      div #{birdid}
+
+    div.row
+      div(class='birdAttr mr-3') bird name is:
+      div #{bird_name}
+      
+    div.row
+      div(class='birdAttr1 mr-3') bird color is:
+      div #{color}
+ 
+    div.row
+      div(class='birdAttr2 mr-3') bird speed is:
+      div #{speed}
