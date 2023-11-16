@@ -1,31 +1,32 @@
 extends layout
+
 block content
- h1= title
- form(id='birdForm', action="/resource/birds", method="POST")
- div.form-group
- label.birdAttr(for='bird_name') bird name
- input#bird_type(type='text', name='bird_name')
- div.form-group
- label.birdAttr(for='color') bird color
- input#size(type='text', name='size')
- div.form-group
- label.birdAttr(for='speed') bird speed
- input#cost(type='number', name='cost')
- input(type="submit")
- script.
- document.forms['birdForm'].addEventListener('submit', (event) => {
- event.preventDefault();
- // TODO do something here to show user that form is being submitted
- fetch(event.target.action, {
- method: 'POST',
- body: new URLSearchParams(new FormData(event.target)) // event.target is the form
- }).then((resp) => {
- return resp.json(); // or resp.text() or whatever the server sends
- }).then((body) => {
- alert("Save succeded")
- // TODO handle body
- }).catch((error) => {
- // TODO handle error
- alert("Save failed " + error )
- });
- });
+  h1= title
+  form(id='birdForm', action="/resource/bird", method="POST")
+    div.form-group-create
+      label.birdAttr(for='bird_name') bird_Name
+      input#bird_Name(type='text', name='bird_name')
+    div.form-group-create
+      label.birdAttr(for='color') bird_color
+      input#bird_Age(type='text', name='color')
+    div.form-group-create
+      label.birdAttr(for='speed') bird_speed
+      input#bird_color(type='number', name='speed')
+    input(type="submit")
+    script.
+      document.forms['birdForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Save succeeded")
+          // TODO handle the body
+        }).catch((error) => {
+          // TODO handle the error in
+          alert("Save failed " + error )
+        });
+      });
