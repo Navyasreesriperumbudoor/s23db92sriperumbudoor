@@ -145,3 +145,17 @@ exports.bird_update_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
+
+   // Handle a delete one view with id from query
+exports.bird_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await bird.findById(req.query.id)
+    res.render('birddelete', { title: 'bird Delete', toShow:
+   result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };

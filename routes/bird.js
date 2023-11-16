@@ -12,4 +12,7 @@ router.get('/create', bird_controlers.bird_create_Page);
 /* GET create update page */
 router.get('/update', bird_controlers.bird_update_Page);
 
+/* GET delete bird page */
+router.get('/delete', bird_controlers.bird_delete_Page)
+
 module.exports = router;
