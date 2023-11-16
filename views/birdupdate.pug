@@ -2,42 +2,55 @@ extends layout
 
 block content
   h1= title
-  - let birdid = toShow._id
-  - let bird_name = toShow.bird_name
-  - let color = toShow.color
-  - let speed = toShow.speed
 
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{birdid}
+  if (toShow == null)
+    h2 No instance to update
+  else
+    - let birdid = toShow._id
+    - let bird_name = toShow.bird_name
+    - let color = toShow.color
+    - let speed = toShow.speed
 
-  - let actionid = "/resource/bird/" + birdid
-  form(id='birdForm', action= actionid, method="PUT")
-    div.form-group
-      label.birdAttr(for='bird_name') bird_Name
-      input#passengerName(type='text', name='bird_name', value= bird_name )
-    div.form-group
-      label.birdAttr(for='color') bird_color
-      input#ticketNumber(type='text', name='color', value= color )
-    div.form-group
-      label.birdAttr(for='speed') bird_Color
-      input#seatNumber(type='Number', name='speed', value= speed )
-    input(type="submit")
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{birdid}
 
-    script.
-      document.forms['birdForm'].addEventListener('submit', (event) => {
-        event.preventDefault();
-        // TODO do something here to show user that the form is being submitted
-        fetch(event.target.action, {
-          method: 'PUT',
-          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-        }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
-        }).then((body) => {
-          alert("Update succeeded");
-          // TODO handle body
-        }).catch((error) => {
-          // TODO handle error
-          alert("Update failed " + error );
+    - let actionid = "/resource/bird/" + birdid
+
+    form(id='birdForm', action= actionid, method="PUT")
+      div.form-group
+        label.birdAttr(for='bird_name') bird_Name
+        input#passengerName(type='text', name='bird_name', value= bird_name )
+
+      div.form-group
+        label.birdAttr(for='color') bird_color
+        input#ticketNumber(type='text', name='color', value= color )
+
+      div.form-group
+        label.birdAttr(for='speed') bird_Color
+        input#seatNumber(type='Number', name='speed', value= speed )
+
+      input(type="submit")
+
+      script.
+        document.forms['birdForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          // TODO do something here to show user that the form is being submitted
+
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          })
+          .then((resp) => resp.json()) // or resp.text() or whatever the server sends
+          .then((body) => {
+            alert("Update succeeded");
+
+            // TODO handle body
+          })
+          .catch((error) => {
+            // TODO handle error
+
+            alert("Update failed " + error );
+          });
         });
-      });

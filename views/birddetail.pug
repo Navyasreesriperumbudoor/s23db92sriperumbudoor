@@ -1,6 +1,10 @@
 extends layout
 block content
  h1= title
+ 
+ if (toShow == null)
+    h2 No instance to detail
+  else
  - let birdid = toShow._id
  - let bird_name  = toShow.bird_name
  - let color = toShow.color
