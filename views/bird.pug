@@ -2,32 +2,23 @@ extends layout
  
 block content
   h1= title
-  - let items = results;
+  - let items = results
   div(class="container-fluid")
-    div(class="row m-1")
-      each item in items
-        - let destination = `dispatch(\"/bird/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") 
-          | bird #{item.bird_name}(#{item.color}) is #{item.speed}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
-    script.
-      function dispatch(path){
-          window.location.href=path
-      }
-
-
-  //- let results = [{bird_name:"Pigeon", color: "Blue", speed: 50},{bird_name:"Sparrow", color: "Brown", speed: 20},{bird_name:"Nightingale", color: "yellow", speed: 55}]
-
-  //-div(class="container-fluid")
-    //-div(class="row")
-      //-each bird,index in results
-        //-div(class="col-sm-2" onclick =`buy(${index})`) #{bird.name}, #{bird.color}, #{bird.speed}
-        
-    //-script.
-       //- function buy(a)
-       //- {
-           //- alert(`You purchased Item ${a+1}`)
-        //-}
+    div(class="row")
+      each bird, index in results
+        div(class="col-sm-2", onclick=`buy(${index})`) #{bird.name}, #{bird.color}, #{bird.speed}
+        - let destination = `/bird/update?id=${bird._id}` // Fix variable name and template string
+        div(class="col-sm-2", onclick=`buy(${bird})`) #{bird.name}, #{bird.color}, #{bird.speed} 
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+  script.
+    function buy(a) {
+      alert(`You purchased Item ${results[a].name}`); // Fix the alert message
+    }
+ 
+    function dispatch(path) {
+      window.location.href = path;
+    }
+ 
 
 
           

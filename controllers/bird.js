@@ -59,8 +59,8 @@ exports.bird_view_all_Page = async function(req, res) {
     try{
     console.log("IN")
     theGadgets = await bird.find();
-    console.log(thebird)
-    res.render('birds', { title: 'Search Results - bird', results: thebird });
+    // console.log(thebirds)
+    res.render('bird', { title: 'Search Results - bird', results: theGadgets});
     }
     catch(err){
     //res.status(500);
