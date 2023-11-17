@@ -4,4 +4,5 @@ bird_name: String,
 color: String,
 speed: Number
 })
+
 module.exports = mongoose.model("bird",birdSchema)
