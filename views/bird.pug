@@ -3,16 +3,22 @@ extends layout
 block content
   h1= title
   - let items = results
+  - let destination = `/bird/create`
+  button.btn( class="btn-primary ml-1", onclick= `dispatch("${destination}")`) Create New Bird Item
   div(class="container-fluid")
     div(class="row")
       each bird, index in results
-        div(class="col-sm-2", onclick=`buy(${index})`) #{bird.name}, #{bird.color}, #{bird.speed}
-        - let destination = `/bird/update?id=${bird._id}` // Fix variable name and template string
-        div(class="col-sm-2", onclick=`buy(${bird})`) #{bird.name}, #{bird.color}, #{bird.speed} 
-        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+        div(class="col-sm-2", onclick=`buy(${index})`) #{bird.bird_name}, #{bird.color}, #{bird.speed}
+        - let destination1 = `/bird/update?id=${bird._id}` // Fix variable name and template string
+        - let destination2 = `/bird/detail?id=${bird._id}` // Fix variable name and template string
+        - let destination3 = `/bird/delete?id=${bird._id}` // Fix variable name and template string
+        div(class="col-sm-2", onclick=`buy(${bird})`) #{bird.bird_name}, #{bird.color}, #{bird.speed} 
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination1}')`) Update
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination2}')`) Detail
+        button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination3}')`) Delete
   script.
     function buy(a) {
-      alert(`You purchased Item ${results[a].name}`); // Fix the alert message
+      alert(`You purchased Item ${results[a].bird_name}`); // Fix the alert message
     }
  
     function dispatch(path) {
