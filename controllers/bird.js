@@ -80,7 +80,7 @@ ${JSON.stringify(req.body)}`)
  if(req.body.color) toUpdate.color = req.body.color;
  if(req.body.speed) toUpdate.speed = req.body.speed;
  let result = await toUpdate.save();
- console.log("Sucess " + result)
+ console.log("Success " + result)
  res.send(result)
  } catch (err) {
  res.status(500)
