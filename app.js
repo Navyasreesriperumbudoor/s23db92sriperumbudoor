@@ -108,9 +108,9 @@ console.log("Connection to DB succeeded")});
 async function recreateDB(){
  // Delete everything
  await bird.deleteMany();
- let instance1 = new bird({bird_name:"sparrow", color:'yellow',speed:15.4});
- let instance2 = new bird({bird_name:"pigeon", color:'blue',speed:19.4});
- let instance3 = new bird({bird_name:"peacock", color:'green',speed:17.4});
+ let instance1 = new bird({bird_name:"sparrow", color:'yellow',speed:15});
+ let instance2 = new bird({bird_name:"pigeon", color:'blue',speed:19});
+ let instance3 = new bird({bird_name:"peacock", color:'green',speed:17});
 
  instance1.save().then(doc=>{
  console.log("First object saved")}
